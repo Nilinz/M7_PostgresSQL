@@ -1,21 +1,18 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
 from faker import Faker
 from models import Student, Group, Teacher, Subject, Grade
 from sqlalchemy.orm import configure_mappers
+from connect_db import session
+
 
 fake = Faker()
 
-engine = create_engine('postgresql://postgres:mysecretpassword@localhost:5432/postgres')
-Session = sessionmaker(bind=engine)
-session = Session()
 configure_mappers()
 # Генерація студентів
 students = [Student(fullname=fake.name()) for _ in range(50)]
 session.add_all(students)
 session.commit()
 # Генерація груп
-groups = [Group(name=fake.word()) for _ in range(3)]
+groups = [Group(group_name=fake.word()) for _ in range(3)]  # Use 'group_name' instead of 'name'
 session.add_all(groups)
 session.commit()
 # Генерація викладачів

@@ -1,11 +1,6 @@
-from sqlalchemy.orm import sessionmaker
-from models import Student, Subject, Score, Teacher, Group, Base
+from models import Student, Subject, Grade, Teacher, Group, Base
 
-engine = create_engine('postgresql://postgres:mysecretpassword@localhost:5432/postgres')
-Base.metadata.bind = engine
 
-DBSession = sessionmaker(bind=engine)
-session = DBSession()
 #Знайти 5 студентів із найбільшим середнім балом з усіх предметів.
 def select_1(session):
     return session.query(Student.fullname, func.round(func.avg(Grade.grade), 2).label('avg_grade'))\
