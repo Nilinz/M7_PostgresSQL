@@ -49,5 +49,5 @@ python seed.py
 ## Запустіть файл ``main.py`` для виконання запитів до бази даних відповідних вибірок.
 
 ```
-python my_select.py
+python main.py
 ```
